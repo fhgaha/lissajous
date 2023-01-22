@@ -1,9 +1,9 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 const Circle = (props) => {
 	const [position, setPosition] = useState({ x: 0, y: 0 })
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		document.onmousemove = (event) => {
 			var e = event;
 			setPosition({ x: e.clientX, y: e.clientY })
