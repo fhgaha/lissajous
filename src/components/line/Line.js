@@ -5,19 +5,19 @@ const Line = (props) => {
 
 	const [first, setfirst] = useState()
 
-	useEffect(() => {
-		setfirst(linedraw(100, 100, 400, 400))
+	// useEffect(() => {
+	// 	setfirst(linedraw(100, 100, 400, 400))
 
-	}, [])
+	// }, [])
 
 	return (
-		<div className='line' style={ linedraw(100, 100, 400, 400)} {...props}></div>
+		<div className='line' style={ drawLine(props.from.x, props.from.y, props.to.x, props.to.y)} {...props}></div>
 	)
 }
 
 export default Line
 
-function linedraw(ax, ay, bx, by) {
+export function drawLine(ax, ay, bx, by) {
 	if (ay > by) {
 		bx = ax + bx;
 		ax = bx - ax;

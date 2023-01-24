@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Line, { drawLine } from '../line/Line';
 
 // x = Asin(a * fi + theta)
 // y = Bsin(b * theta)
@@ -31,6 +32,7 @@ function drawSine(t, h, f, w, ctx) {
 		var x = calcX(i, h, f, w);
 		var y = calcY(i, h, f, w); // Calculate y value from x
 		ctx.lineTo(x, y); // Where to draw to
+
 	}
 
 	ctx.stroke(); // Draw
@@ -60,13 +62,16 @@ const Sine = (props) => {
 	}, []);
 
 	return (
-		<canvas
-			id="canvas"
-			width="640"
-			height="240"
-			style={{ border: '1px solid #999' }}
-			{...props}
-		></canvas>
+		<>
+			<canvas
+				id="canvas"
+				width="640"
+				height="240"
+				style={{ border: '1px solid #999' }}
+				{...props}
+			></canvas>
+			<Line className='line glowy' from={{ x: 50, y: 100 }} to={{ x: 400, y: 500 }} />
+		</>
 	)
 }
 
