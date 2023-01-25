@@ -16,7 +16,8 @@ function App() {
       {/* <Circle /> */}
       {/* <Sine /> */}
       {/* <Line className='line glowy' from={{x: 50, y:100}} to={{x:400, y:500}}/> */}
-      <Path/>
+      <span className="title">Watch the Lissajous Patterns</span>
+      {/* <Path/> */}
     </div>
   );
 }

@@ -20,7 +20,7 @@ const Path = () => {
 		// setB(b + 0.01)
 		// console.log(b)
 
-		let def = getDCode(width/2, width/4, a, b, theta)
+		let def = getDCode(height / 2, height / 4, a, b, theta)
 		setDefinition(def)
 		// console.log({ theta, dCode });
 	}, 24);
@@ -47,17 +47,16 @@ const Path = () => {
 				// width={width} height={height}
 				xmlns="http://www.w3.org/2000/svg"
 				style={{ border: '1px solid blue' }}
-				viewBox={`${0} ${0} ${width} ${height}`}
+				viewBox={`${-width / 4} ${-width / 4} ${width} ${width}`}
+			// viewBox={`${0} ${0} ${width * 1.5} ${width * 1.5}`}
 			>
 				<path fill='none' stroke="white" width='1'
-					transform={`translate(${width/4}, ${height/4})`}
+					// transform={`translate(${(width + width * 1.5)/4}, ${(width + width * 1.5)/4})`}
 					style={{ filter: "drop-shadow(0px 0px 5px white)" }}
 					d={definition}
 				/>
 			</svg>
-			<b>
-				({mousePos.x}, {mousePos.y})
-			</b>
+			{/* <b>{`(${mousePos.x}, ${mousePos.y})`}</b> */}
 		</>
 	)
 }

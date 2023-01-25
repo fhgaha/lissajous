@@ -19,7 +19,7 @@
 		/* blur size and spread size are optional (they default to 0) */
 		0 0 20px 10px rgb(193, 196, 0)
 		/* inner white */
-		,0 0 50px 10px rgb(107, 195, 0)
+		, 0 0 50px 10px rgb(107, 195, 0)
 		/* middle magenta */
 		/* ,0 0 140px 90px #0ff */
 		/* outer cyan */
@@ -28,4 +28,32 @@
 		/* left magenta */
 		/* , inset -60px 0 120px #0ff */
 		/* right cyan */
+}
+
+.title {
+	font-weight: 600;
+	position: absolute;
+	text-align: center;
+	left: 0;
+	right: 0;
+	top: 10rem;
+	font-size: 5rem;
+	transform: scale(0.94);
+	opacity: 0;
+	animation:
+		scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1),
+		fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+}
+
+@keyframes scale {
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes fade-in {
+	100% {
+		opacity: 1;
+		filter: blur(0);
+	}
 }
