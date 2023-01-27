@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useInterval } from '../../hooks/useInterval'
 import './path.css'
 import bezier from 'bezier-easing'
+import { useMousePos } from '../../hooks/useMousePos'
 
 const pad = 150
+const fps = 60
 
 const Path = () => {
 	const [width, setWidth] = useState(400)
@@ -12,7 +14,7 @@ const Path = () => {
 	const [b, setB] = useState(1)
 	const [definition, setDefinition] = useState('')
 	const [theta, setTheta] = useState(1)
-	const [mousePos, setMousePos] = useState({x: null, y: null});
+	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
 
 	useInterval(() => {
 		setTheta(theta + 0.005);
@@ -24,17 +26,7 @@ const Path = () => {
 		let def = getDCode(height / 2, height / 4, a, b, theta)
 		setDefinition(def)
 		// console.log({ theta, dCode });
-	}, 1000 / 60);
-
-	useEffect(() => {
-		const handleMouseMove = (event) => {
-			setMousePos({ x: event.clientX, y: event.clientY });
-		};
-		window.addEventListener('mousemove', handleMouseMove);
-		return () => {
-			window.removeEventListener('mousemove', handleMouseMove);
-		};
-	}, []);
+	}, 1000 / fps);
 
 	useEffect(() => {
 		if (mousePos.x == null) return
@@ -46,28 +38,27 @@ const Path = () => {
 
 	}, [mousePos])
 
-
-return (
-	<>
-		<svg
-			// width={width} height={height}
-			xmlns="http://www.w3.org/2000/svg"
-			style={{ border: '1px solid blue' }}
-			viewBox={`${-width / 4} ${-width / 4} ${width} ${width}`}
-		// viewBox={`${0} ${0} ${width * 1.5} ${width * 1.5}`}
-		>
-			<path fill='none' stroke="white" width='1'
-				// transform={`translate(${(width + width * 1.5)/4}, ${(width + width * 1.5)/4})`}
-				style={{ filter: "drop-shadow(0px 0px 5px white)" }}
-				d={definition}
-			/>
-		</svg>
-		<p>{`(${mousePos.x}, ${mousePos.y})`}</p>
-		<p>{'a: ' + a}</p>
-		<p>{'b: ' + b}</p>
-		<p>{'theta: ' + theta}</p>
-	</>
-)
+	return (
+		<>
+			<svg
+				// width={width} height={height}
+				xmlns="http://www.w3.org/2000/svg"
+				style={{ border: '1px solid blue' }}
+				viewBox={`${-width / 4} ${-width / 4} ${width} ${width}`}
+			// viewBox={`${0} ${0} ${width * 1.5} ${width * 1.5}`}
+			>
+				<path fill='none' stroke="white" width='1'
+					// transform={`translate(${(width + width * 1.5)/4}, ${(width + width * 1.5)/4})`}
+					style={{ filter: "drop-shadow(0px 0px 5px white)" }}
+					d={definition}
+				/>
+			</svg>
+			<p>{`(${mousePos.x}, ${mousePos.y})`}</p>
+			<p>{'a: ' + a}</p>
+			<p>{'b: ' + b}</p>
+			<p>{'theta: ' + theta}</p>
+		</>
+	)
 }
 
 export default Path
