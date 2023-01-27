@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useInterval } from '../../hooks/useInterval'
 import './path.css'
-import bezier from 'bezier-easing'
 import { useMousePos } from '../../hooks/useMousePos'
 
-const pad = 150
 const fps = 60
 
 const Path = () => {
