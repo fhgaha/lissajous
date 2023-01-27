@@ -8,4 +8,9 @@ svg {
 	top: 0;
 	bottom: 0;
 	text-align: center;
+	opacity: 0;
+}
+
+.active {
+	opacity: 1;
 }

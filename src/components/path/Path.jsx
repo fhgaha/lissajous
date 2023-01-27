@@ -5,7 +5,7 @@ import { useMousePos } from '../../hooks/useMousePos'
 
 const fps = 60
 
-const Path = () => {
+const Path = (props) => {
 	const [width, setWidth] = useState(400)
 	const [height, setHeight] = useState(400)
 	const [a, setA] = useState(1)
@@ -15,7 +15,9 @@ const Path = () => {
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
 
 	useInterval(() => {
-		setTheta(theta + 0.005);
+		if (props.rotate) {
+			setTheta(theta + 0.005);
+		}
 		// setA(a + 0.01)
 		// console.log(a)
 		// setB(b + 0.01)
@@ -43,6 +45,7 @@ const Path = () => {
 				xmlns="http://www.w3.org/2000/svg"
 				style={{ border: '1px solid blue' }}
 				viewBox={`${-width / 4} ${-width / 4} ${width} ${width}`}
+				{...props}
 			// viewBox={`${0} ${0} ${width * 1.5} ${width * 1.5}`}
 			>
 				<path fill='none' stroke="white" width='1'
@@ -51,10 +54,12 @@ const Path = () => {
 					d={definition}
 				/>
 			</svg>
-			<p>{`(${mousePos.x}, ${mousePos.y})`}</p>
-			<p>{'a: ' + a}</p>
-			<p>{'b: ' + b}</p>
-			<p>{'theta: ' + theta}</p>
+			{/* <div className="info">
+				<p>{`(${mousePos.x}, ${mousePos.y})`}</p>
+				<p>{'a: ' + a}</p>
+				<p>{'b: ' + b}</p>
+				<p>{'theta: ' + theta}</p>
+			</div> */}
 		</>
 	)
 }
