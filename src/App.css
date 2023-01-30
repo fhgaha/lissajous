@@ -36,11 +36,11 @@
 	position: absolute;
 	border-radius: 50%;
 	opacity: 0;
-	animation: 0.5s 4s forwards ease-in target-appear;
+	/* animation: 0.5s 4s forwards ease-in target-appear; */
 	transition: var(--transition);
 }
 
-@keyframes target-appear {
+/* @keyframes target-appear {
 	to {
 		opacity: 1;
 	}
@@ -48,4 +48,4 @@
 
 .inactive {
 	background-color: transparent;
-}
+} */

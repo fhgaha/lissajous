@@ -13,30 +13,23 @@ function App() {
   const [tagetIsActive, setTagetIsActive] = useState(true)
 
   const app = useRef()
+  const tl = useRef()
 
-  // useLayoutEffect(() => {
-    // let ctx = gsap.context(() => {
-      // gsap
-      // .timeline()
-      // .to('#watch-lissajous-text', {
-      //   animation: `
-      //   3s forwards cubic-bezier(0.5, 1, 0.89, 1) scale-in,
-      //   1.5s 0.6s forwards cubic-bezier(0.11, 0, 0.5, 0) fade-in,
-      //   3s 4s forwards cubic-bezier(0.5, 1, 0.89, 1) scale-out,
-      //   0.8s 2.5s forwards cubic-bezier(0.11, 0, 0.5, 0) fade-out
-      // ` })
-      // //   .to('.target-in-center', {
-      //     animation: `
-      //     0.5s 4s forwards ease-in target-appear
-      // `})
-    // }, app)
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      tl.current = gsap
+      .timeline()
+      .to('#watch-lissajous-text', {transform: 'scale(1)', opacity: 1, duration: 3, delay: 0.8})
+      .to('#watch-lissajous-text', {opacity: 0, duration: 1})
+      .to('.target-in-center', {opacity: 1, duration: 0.6})
+    }, app)
 
-    // return () => ctx.revert()
-  // }, [])
+    return () => ctx.revert()
+  }, [])
 
   return (
     <div 
-    // ref={app} 
+    ref={app} 
     className="App">
       {/* <Circle /> */}
       <WatchLissajousText />
