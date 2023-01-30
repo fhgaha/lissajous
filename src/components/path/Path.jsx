@@ -35,8 +35,9 @@ const Path = (props) => {
 		let newA = mousePos.y / window.innerHeight * 0.1 + 1 - 0.0477
 		setA(newA)
 		// setB(mousePos.x / window.innerWidth * Math.PI)
-
 	}, [mousePos])
+
+	
 
 	return (
 		<>

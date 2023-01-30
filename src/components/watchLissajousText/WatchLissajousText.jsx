@@ -1,9 +1,9 @@
 import React from 'react'
-import './watchLissajouxText.css'
+import './watchLissajousText.css'
 
 const WatchLissajouxText = () => {
 	return (
-		<span>Watch the Lissajous Figures</span>
+		<span id='watch-lissajous-text'>Watch the Lissajous Figures</span>
 	)
 }
 

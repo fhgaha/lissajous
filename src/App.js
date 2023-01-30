@@ -1,26 +1,46 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./App.css";
 import Circle from "./components/circle/Circle";
 import Path from "./components/path/Path";
-import WatchLissajouxText from "./components/watchLissajouxText/WatchLissajouxText";
+import WatchLissajousText from "./components/watchLissajousText/WatchLissajousText";
 import { useInterval } from "./hooks/useInterval";
+import gsap from "gsap";
+
+const centerTargetSize = 50
 
 function App() {
-
-  const centerTargetSize = 50
-
   const [pathIsActive, setPathIsActive] = useState(false)
   const [tagetIsActive, setTagetIsActive] = useState(true)
 
+  const app = useRef()
+
+  // useLayoutEffect(() => {
+    // let ctx = gsap.context(() => {
+      // gsap
+      // .timeline()
+      // .to('#watch-lissajous-text', {
+      //   animation: `
+      //   3s forwards cubic-bezier(0.5, 1, 0.89, 1) scale-in,
+      //   1.5s 0.6s forwards cubic-bezier(0.11, 0, 0.5, 0) fade-in,
+      //   3s 4s forwards cubic-bezier(0.5, 1, 0.89, 1) scale-out,
+      //   0.8s 2.5s forwards cubic-bezier(0.11, 0, 0.5, 0) fade-out
+      // ` })
+      // //   .to('.target-in-center', {
+      //     animation: `
+      //     0.5s 4s forwards ease-in target-appear
+      // `})
+    // }, app)
+
+    // return () => ctx.revert()
+  // }, [])
+
   return (
-    <div
-      className="App"
-    // onMouseMove={drawCircle} 
-    //  onLoad={linedraw(100, 100, 400, 400)}
-    >
+    <div 
+    // ref={app} 
+    className="App">
       {/* <Circle /> */}
-      <WatchLissajouxText />
-      <Path className={pathIsActive ? 'path active' : 'path'} rotate={pathIsActive ? true : false} />
+      <WatchLissajousText />
+      <Path className={pathIsActive ? 'path active' : 'path'} rotate={pathIsActive} />
 
       <div
         // className="target-in-center"
