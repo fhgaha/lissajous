@@ -38,6 +38,7 @@
 	opacity: 0;
 	/* animation: 0.5s 4s forwards ease-in target-appear; */
 	transition: var(--transition);
+	pointer-events: none;
 }
 
 /* @keyframes target-appear {
