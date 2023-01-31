@@ -18,8 +18,8 @@ function App() {
     const ctx = gsap.context(() => {
       tl.current = gsap.timeline({ onComplete: () => setTargetIsActive(true) })
         .to('#watch-lissajous-text',
-          { scale: 1, opacity: 1, duration: 3, ease: 'cubic-bezier(0.5, 1, 0.89, 1)', delay: 0.8 })
-        .to('#watch-lissajous-text', { opacity: 0, duration: 1 })
+          { scale: 1, opacity: 1, duration: 0.3, ease: 'cubic-bezier(0.5, 1, 0.89, 1)', delay: 0.8 })
+        .to('#watch-lissajous-text', { opacity: 0, duration: 0.1 })
         .to('.target-in-center', { opacity: 1, duration: 0.6 })
     }, app)
 

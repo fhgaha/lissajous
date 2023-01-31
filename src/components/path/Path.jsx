@@ -15,63 +15,52 @@ const Path = ({ pathIsActive, ...props }) => {
 	const [theta, setTheta] = useState(0)
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
 
-	const updateEverySecond = async () => {
+	useEffect(() => {
+		if (startAnimationFinished || !pathIsActive) return
+
+		drawLine()
+	}, [pathIsActive]);
+
+	const drawLine = async () => {
 		let i = 0;
 
 		while (i++ < 100) {
 			const newDef = `M ${100 - i} ${100 - i} L ${100 + i} ${100 + i}`;
 			setDefinition(newDef);
-			await new Promise(resolve => setTimeout(resolve, 100));
+			await new Promise(resolve => setTimeout(resolve, 10));
 		}
-	}
-
-	useEffect(() => {
-		if (startAnimationFinished) return
-		if (!pathIsActive) return
-
-		updateEverySecond();
 		startAnimationFinished = true
-	}, [pathIsActive]);
+	}
 
 	useInterval(() => {
 		if (!startAnimationFinished) return
 
 		if (pathIsActive) {
-			// setTheta(theta + 0.005);
+			setTheta(theta + 0.005);
 		}
-		// setA(a + 0.01)
-		// console.log(a)
-		// setB(b + 0.01)
-		// console.log(b)
 
 		let def = getDCode(height / 2, height / 4, a, b, theta)
 		setDefinition(def)
-		// console.log({ theta, dCode });
 	}, 1000 / fps);
 
 	useEffect(() => {
 		if (!startAnimationFinished) return
+		if (!pathIsActive) return
 		if (mousePos.x == null) return
 
-		// setTheta(mousePos.x / window.innerWidth * Math.PI)
 		let newA = mousePos.y / window.innerHeight * 0.1 + 1 - 0.0477
 		setA(newA)
-		// setB(mousePos.x / window.innerWidth * Math.PI)
 	}, [mousePos])
 
 	return (
 		<>
 			<svg
-				// width={width} height={height}
 				className={'path' + (pathIsActive ? ' active' : '')}
 				xmlns="http://www.w3.org/2000/svg"
-				style={{ border: '1px solid blue' }}
 				viewBox={`${-width / 4} ${-width / 4} ${width} ${width}`}
 				{...props}
-			// viewBox={`${0} ${0} ${width * 1.5} ${width * 1.5}`}
 			>
 				<path fill='none' stroke="white" width='1'
-					// transform={`translate(${(width + width * 1.5)/4}, ${(width + width * 1.5)/4})`}
 					style={{ filter: "drop-shadow(0px 0px 5px white)" }}
 					d={definition}
 				/>
