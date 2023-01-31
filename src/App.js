@@ -45,8 +45,8 @@ function App() {
       className="App">
       {/* <Circle /> */}
       <WatchLissajousText />
-      <Path className={pathIsActive ? 'path active' : 'path'} rotate={pathIsActive.toString()} />
-      <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter}/>
+      <Path  pathIsActive={pathIsActive} />
+      <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter} />
     </div>
   );
 }

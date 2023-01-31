@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useInterval } from '../../hooks/useInterval'
 import './path.css'
 import { useMousePos } from '../../hooks/useMousePos'
 
 const fps = 60
+let startAnimationFinished = false
 
-const Path = (props) => {
+const Path = ({ pathIsActive, ...props }) => {
 	const [width, setWidth] = useState(400)
 	const [height, setHeight] = useState(400)
 	const [a, setA] = useState(1)
@@ -14,8 +15,28 @@ const Path = (props) => {
 	const [theta, setTheta] = useState(0)
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
 
+	const updateEverySecond = async () => {
+		let i = 0;
+
+		while (i++ < 100) {
+			const newDef = `M ${100 - i} ${100 - i} L ${100 + i} ${100 + i}`;
+			setDefinition(newDef);
+			await new Promise(resolve => setTimeout(resolve, 100));
+		}
+	}
+
+	useEffect(() => {
+		if (startAnimationFinished) return
+		if (!pathIsActive) return
+
+		updateEverySecond();
+		startAnimationFinished = true
+	}, [pathIsActive]);
+
 	useInterval(() => {
-		if (props.rotate) {
+		if (!startAnimationFinished) return
+
+		if (pathIsActive) {
 			// setTheta(theta + 0.005);
 		}
 		// setA(a + 0.01)
@@ -29,6 +50,7 @@ const Path = (props) => {
 	}, 1000 / fps);
 
 	useEffect(() => {
+		if (!startAnimationFinished) return
 		if (mousePos.x == null) return
 
 		// setTheta(mousePos.x / window.innerWidth * Math.PI)
@@ -37,12 +59,11 @@ const Path = (props) => {
 		// setB(mousePos.x / window.innerWidth * Math.PI)
 	}, [mousePos])
 
-	
-
 	return (
 		<>
 			<svg
 				// width={width} height={height}
+				className={'path' + (pathIsActive ? ' active' : '')}
 				xmlns="http://www.w3.org/2000/svg"
 				style={{ border: '1px solid blue' }}
 				viewBox={`${-width / 4} ${-width / 4} ${width} ${width}`}
