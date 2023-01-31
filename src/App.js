@@ -16,8 +16,8 @@ function App() {
   const tl = useRef()
 
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      tl.current = gsap.timeline({onComplete: () => setTargetIsActive(true)})
+    const ctx = gsap.context(() => {
+      tl.current = gsap.timeline({ onComplete: () => setTargetIsActive(true) })
         .to('#watch-lissajous-text',
           { scale: 1, opacity: 1, duration: 3, ease: 'cubic-bezier(0.5, 1, 0.89, 1)', delay: 0.8 })
         .to('#watch-lissajous-text', { opacity: 0, duration: 1 })
@@ -26,6 +26,14 @@ function App() {
 
     return () => ctx.revert()
   }, [])
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to('.target-in-center', { opacity: 0, duration: 0.6 })
+    }, app)
+
+    return () => ctx.revert()
+  }, [pathIsActive])
 
   function onMouseEnter() {
     setPathIsActive(true)
@@ -38,11 +46,10 @@ function App() {
       className="App">
       {/* <Circle /> */}
       <WatchLissajousText />
-      <Path className={pathIsActive ? 'path active' : 'path'} rotate={pathIsActive} />
+      <Path className={pathIsActive ? 'path active' : 'path'} rotate={pathIsActive.toString()} />
 
       <div
-        // className="target-in-center"
-        className={targetIsActive ? "target-in-center" : "target-in-center inactive"}
+        className={"target-in-center" + (targetIsActive ? "" : " inactive")}
         style={{
           width: `${centerTargetSize}px`,
           height: `${centerTargetSize}px`,
