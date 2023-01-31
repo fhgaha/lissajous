@@ -5,8 +5,7 @@ import Path from "./components/path/Path";
 import WatchLissajousText from "./components/watchLissajousText/WatchLissajousText";
 import { useInterval } from "./hooks/useInterval";
 import gsap from "gsap";
-
-const centerTargetSize = 50
+import Target from "./components/target/Target";
 
 function App() {
   const [pathIsActive, setPathIsActive] = useState(false)
@@ -47,18 +46,7 @@ function App() {
       {/* <Circle /> */}
       <WatchLissajousText />
       <Path className={pathIsActive ? 'path active' : 'path'} rotate={pathIsActive.toString()} />
-
-      <div
-        className={"target-in-center" + (targetIsActive ? "" : " inactive")}
-        style={{
-          width: `${centerTargetSize}px`,
-          height: `${centerTargetSize}px`,
-          left: `calc(50% - ${centerTargetSize}px/2)`,
-          top: `calc(50% - ${centerTargetSize}px/2)`,
-          pointerEvents: `${targetIsActive ? 'all' : 'none'}`
-        }}
-        onMouseEnter={onMouseEnter}
-      ></div>
+      <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter}/>
     </div>
   );
 }

@@ -11,12 +11,12 @@ const Path = (props) => {
 	const [a, setA] = useState(1)
 	const [b, setB] = useState(1)
 	const [definition, setDefinition] = useState('')
-	const [theta, setTheta] = useState(1)
+	const [theta, setTheta] = useState(0)
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
 
 	useInterval(() => {
 		if (props.rotate) {
-			setTheta(theta + 0.005);
+			// setTheta(theta + 0.005);
 		}
 		// setA(a + 0.01)
 		// console.log(a)
