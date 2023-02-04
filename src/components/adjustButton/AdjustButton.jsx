@@ -1,10 +1,12 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import './adjustButton.css'
 import { BsGear } from 'react-icons/bs'
 import gsap from "gsap";
+import ReactSlidingPane from 'react-sliding-pane';
+import './slidePane.css'
 
 const AdjustButton = ({ startAnimation }) => {
-	const ab = useRef()
+	const [isPaneOpen, setIsPaneOpen] = useState(false);
 
 	useLayoutEffect(() => {
 		if (!startAnimation) return
@@ -18,9 +20,21 @@ const AdjustButton = ({ startAnimation }) => {
 
 	return (
 		<div className="adjust-button">
-			<button>
+			<button onClick={() => setIsPaneOpen(true)}>
 				<BsGear id='gear' size={25} />
 			</button>
+			<ReactSlidingPane
+				className="my-slide-pane"
+				overlayClassName="my-slide-pane__overlay"
+				isOpen={isPaneOpen}
+				width={400}
+				title="Hey, it is optional pane title.  I can be React component too."
+				subtitle="Optional subtitle."
+				hideHeader={true}
+				onRequestClose={() => setIsPaneOpen(false)}
+			>
+				<div>And I am pane content. BTW, what rocks?</div>
+			</ReactSlidingPane>
 		</div>
 	)
 }
