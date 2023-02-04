@@ -18,6 +18,8 @@ const Path = ({ pathIsActive, ...props }) => {
 		if (startAnimationFinished || !pathIsActive) return
 
 		const draw = async () => {
+			await waitFor(800)
+			
 			for (let i = 0; i < 100; i++) {
 				setDefinition(`M ${100 - i} ${100 - i} L ${100 + i} ${100 + i}`)
 				await waitFor(10)
@@ -86,7 +88,6 @@ function getDCode(width, height, a, b, theta) {
 		let y = calcY(i, height, b)
 		result += result == '' ? ` M ${x} ${y}` : ` L ${x} ${y}`
 	}
-	// console.log(result)
 	return result
 }
 

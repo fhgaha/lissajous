@@ -29,3 +29,7 @@
 		/* , inset -60px 0 120px #0ff */
 		/* right cyan */
 }
+
+a {
+	color: var(--color-bg-variant);
+}
