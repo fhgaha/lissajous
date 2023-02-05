@@ -1,0 +1,62 @@
+.side-panel {
+	--button-color: var(--color-bg);
+
+	float: left;
+	width: 50px;
+	padding: 10px 15px;
+	height: 50px;
+	position: absolute;
+	top: 40px;
+	right: 0;
+	background: var(--button-color);
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
+	filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.452));
+	transform: translateX(70px);
+	transition-timing-function: cubic-bezier(0.18, 0.89, 0.65, 1.68);
+}
+
+.side-panel:before,
+.side-panel:after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	background: radial-gradient(circle at top left, rgba(255, 13, 13, 0) 72%, var(--button-color) 75%);
+}
+
+.side-panel:after {
+	right: 0;
+	top: 100%;
+	background: radial-gradient(circle at bottom left, rgba(243, 16, 16, 0) 70%, var(--button-color) 75%);
+}
+
+.side-panel:before {
+	bottom: 100%;
+	right: 0;
+}
+
+#gear {
+	color: var(--color-light);
+	background-color: transparent;
+	transition: var(--transition);
+	rotate: 360;
+	cursor: pointer;
+}
+
+#gear:hover {
+	color: var(--color-white);
+	transform: rotate(90deg);
+}
+
+.my-slide-pane {
+	background-color: var(--color-bg);
+}
+
+.slide-pane__close {
+	position: relative;
+}
+
+.slide-pane__header {
+	background-color: transparent;
+	border-bottom: none;
+}

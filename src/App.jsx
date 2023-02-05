@@ -7,7 +7,8 @@ import { useInterval } from "./hooks/useInterval";
 import gsap from "gsap";
 import Target from "./components/target/Target";
 import { BsGear, BsGithub } from "react-icons/bs";
-import AdjustButton from "./components/adjustButton/AdjustButton";
+import SidePanel from "./components/sidePanel/SidePanel";
+import Checkbox from "./components/checkbox/Checkbox";
 
 function App() {
   const [pathIsActive, setPathIsActive] = useState(false)
@@ -52,8 +53,9 @@ function App() {
       <WatchLissajousText />
       <Path pathIsActive={pathIsActive} />
       <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter} />
-      <AdjustButton startAnimation={showAdjustButton} />
+      <SidePanel startAnimation={showAdjustButton} />
       {/* <a href="https://github.com/fhgaha/lissajous" target="_blank"><BsGithub /></a> */}
+      {/* <Checkbox/> */}
     </div>
   );
 }
