@@ -7,9 +7,9 @@ import gsap from "gsap";
 import ReactSlidingPane from 'react-sliding-pane';
 import Checkbox from '../checkbox/Checkbox'
 
-const SidePanel = ({ startAnimation }) => {
+const SidePanel = ({ startAnimation, checkboxChangedCallback }) => {
 	const [isPaneOpen, setIsPaneOpen] = useState(false);
-	const [checked, setChecked] = useState(false)
+	const [checked, setChecked] = useState(true)
 
 	useLayoutEffect(() => {
 		if (!startAnimation) return
@@ -20,6 +20,11 @@ const SidePanel = ({ startAnimation }) => {
 
 		return () => ctx.revert()
 	}, [startAnimation])
+
+	function handleChange(e){
+		checkboxChangedCallback(!checked)
+		setChecked(!checked)
+	}
 
 	return (
 		<div className="side-panel">
@@ -34,7 +39,10 @@ const SidePanel = ({ startAnimation }) => {
 				width={400}
 				onRequestClose={() => setIsPaneOpen(false)}
 			>
-				<Checkbox label="Animate &phi;" value={checked} onChange={() => setChecked(!checked)} />
+				<Checkbox label="Animate &phi;" value={checked} onChange={handleChange} />
+				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
+				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
+				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 
 			</ReactSlidingPane>
 		</div>

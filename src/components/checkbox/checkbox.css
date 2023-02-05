@@ -1,3 +1,8 @@
+ .checkbox-wrapper-51 {
+	display: flex;
+	gap: 1rem;
+ }
+ 
  .checkbox-wrapper-51 input[type="checkbox"] {
  	visibility: hidden;
  	display: none;

@@ -47,13 +47,18 @@ function App() {
     setTargetIsActive(false)
   }
 
+  function handleCheckboxChange(e){
+    console.log(e)
+    setPathIsActive(e)
+  }
+
   return (
     <div ref={app} className="App">
       {/* <Circle /> */}
       <WatchLissajousText />
       <Path pathIsActive={pathIsActive} />
       <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter} />
-      <SidePanel startAnimation={showAdjustButton} />
+      <SidePanel startAnimation={showAdjustButton} checkboxChangedCallback={handleCheckboxChange}/>
       {/* <a href="https://github.com/fhgaha/lissajous" target="_blank"><BsGithub /></a> */}
       {/* <Checkbox/> */}
     </div>
