@@ -45,7 +45,7 @@ const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiSliderChanged }) =>
 					y = Bsin(bt)
 				</text>
 				<Checkbox label="Animate &phi;" value={checked} onChange={handleCheckboxChange} />
-				<Interface symbol='&phi;' onChange={onPhiSliderChanged}/>
+				<Interface symbol='&phi;' onChange={onPhiSliderChanged} unitName='&pi;, Radians'/>
 				
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>

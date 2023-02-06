@@ -54,3 +54,42 @@ input[type='range'] {
     @include thumb-style;
   }
 }
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  gap: 1rem;
+  height: 2rem;
+}
+
+.units {
+  display: flex;
+  gap: 1rem;
+  vertical-align: middle;
+  border-collapse: separate;
+}
+
+.units div,input{
+  height: 34px;
+  vertical-align: middle;
+}
+
+input.number-input {
+  vertical-align: middle;
+  text-align: right;
+  background-color: var(--color-white);
+  height: 20px;
+  width: 60px;
+  font-family: 'Poppins', sans-serif;
+  padding: 0 0.4rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

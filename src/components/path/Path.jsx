@@ -30,7 +30,6 @@ const Path = ({ pathIsActive, newTheta, ...props }) => {
 	}, [pathIsActive])
 
 	useEffect(() => {
-		console.log(newTheta)
 		setTheta(parseFloat(newTheta))
 	}, [newTheta])
 

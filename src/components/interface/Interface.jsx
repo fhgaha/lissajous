@@ -2,20 +2,31 @@ import React, { useState } from 'react'
 import './interface.scss'
 
 const Interface = ({ symbol, onChange, unitName }) => {
+	const [value, setValue] = useState(0)
+
+	function handleChange(e) {
+		setValue(e.target.value)
+		onChange(e)
+	}
+
 	return (
 		<div className="interface">
-			<div className="symbol-input-group">
-				<label className='symbol'>{symbol}</label>
-				<div className="input-group">
-					{/* <input className='range-style' type="range" onChange={onChange} /> */}
-					<input type="range" className="range-style"
-						min={0} max={2} step={0.01}
-						defaultValue={0}
-						onChange={onChange}
+			<label className='input-group'>
+				<div>{symbol}</div>
+				<div className='units'>
+					<input type='number' className='number-input'
+						min={0} max={2} step={0.01} defaultValue={0}
+						value={value}
+						onChange={handleChange}
 					></input>
-					<span>{unitName}</span>
+					<div>{unitName}</div>
 				</div>
-			</div>
+			</label>
+			<input type="range" className="range-style"
+				min={0} max={2} step={0.01} defaultValue={0}
+				value={value}
+				onChange={handleChange}
+			></input>
 		</div>
 	)
 }

@@ -54,7 +54,6 @@ function App() {
 
   function handlePhiSliderChange(e) {
     setPhiSliderValue(e.target.value)
-    // console.log(e.target.value)
   }
 
   return (
