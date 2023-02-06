@@ -53,16 +53,14 @@ function App() {
   }
 
   function handlePhiSliderChange(e) {
-    setPhiSliderValue(e.target.value)
+    setPhiSliderValue(e.target.value == '' ? 0 : parseFloat(e.target.value))
   }
 
   return (
     <div ref={app} className="App">
       {/* <Circle /> */}
       <WatchLissajousText />
-      <Path pathIsActive={pathIsActive}
-        newTheta={phiSliderValue}
-      />
+      <Path pathIsActive={pathIsActive} newTheta={phiSliderValue} />
       <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter} />
       <SidePanel
         startAnimation={showAdjustButton}
