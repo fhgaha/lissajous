@@ -7,11 +7,11 @@ const fps = 60
 const width = 400, height = 400
 let startAnimationFinished = false
 
-const Path = ({ pathIsActive, ...props }) => {
+const Path = ({ pathIsActive, newTheta, ...props }) => {
 	const [a, setA] = useState(1)
 	const [b, setB] = useState(1)
 	const [definition, setDefinition] = useState('')
-	const [theta, setTheta] = useState(0)
+	const [theta, setTheta] = useState(0.0)
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
 
 	useEffect(() => {
@@ -19,7 +19,7 @@ const Path = ({ pathIsActive, ...props }) => {
 
 		const draw = async () => {
 			await waitFor(800)
-			
+
 			for (let i = 0; i < 100; i++) {
 				setDefinition(`M ${100 - i} ${100 - i} L ${100 + i} ${100 + i}`)
 				await waitFor(10)
@@ -28,6 +28,11 @@ const Path = ({ pathIsActive, ...props }) => {
 		}
 		draw()
 	}, [pathIsActive])
+
+	useEffect(() => {
+		console.log(newTheta)
+		setTheta(parseFloat(newTheta))
+	}, [newTheta])
 
 	useInterval(() => {
 		if (!startAnimationFinished) return
@@ -91,10 +96,10 @@ function getDCode(width, height, a, b, theta) {
 	return result
 }
 
-function calcY(t, h, b) {
-	return h * (1 - Math.sin(b * t));
-}
-
 function calcX(t, f, w, a) {
 	return w / 2 * (1 - Math.sin(a * t + f));
+}
+
+function calcY(t, h, b) {
+	return h * (1 - Math.sin(b * t));
 }

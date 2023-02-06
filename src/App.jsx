@@ -14,6 +14,7 @@ function App() {
   const [pathIsActive, setPathIsActive] = useState(false)
   const [targetIsActive, setTargetIsActive] = useState(false)
   const [showAdjustButton, setShowAdjustButton] = useState(false)
+  const [phiSliderValue, setPhiSliderValue] = useState(0)
 
   const app = useRef()
   const tl = useRef()
@@ -47,18 +48,29 @@ function App() {
     setTargetIsActive(false)
   }
 
-  function handleCheckboxChange(e){
-    console.log(e)
+  function handleCheckboxChange(e) {
     setPathIsActive(e)
+  }
+
+  function handlePhiSliderChange(e) {
+    setPhiSliderValue(e.target.value)
+    // console.log(e.target.value)
   }
 
   return (
     <div ref={app} className="App">
       {/* <Circle /> */}
       <WatchLissajousText />
-      <Path pathIsActive={pathIsActive} />
+      <Path pathIsActive={pathIsActive}
+        newTheta={phiSliderValue}
+      />
       <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter} />
-      <SidePanel startAnimation={showAdjustButton} checkboxChangedCallback={handleCheckboxChange}/>
+      <SidePanel
+        startAnimation={showAdjustButton}
+        onCheckboxChanged={handleCheckboxChange}
+        onPhiSliderChanged={handlePhiSliderChange}
+      />
+
       {/* <a href="https://github.com/fhgaha/lissajous" target="_blank"><BsGithub /></a> */}
       {/* <Checkbox/> */}
     </div>

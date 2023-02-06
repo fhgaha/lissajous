@@ -6,8 +6,9 @@ import { IoIosClose } from 'react-icons/io'
 import gsap from "gsap";
 import ReactSlidingPane from 'react-sliding-pane';
 import Checkbox from '../checkbox/Checkbox'
+import Interface from '../interface/Interface'
 
-const SidePanel = ({ startAnimation, checkboxChangedCallback }) => {
+const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiSliderChanged }) => {
 	const [isPaneOpen, setIsPaneOpen] = useState(false);
 	const [checked, setChecked] = useState(true)
 
@@ -21,8 +22,8 @@ const SidePanel = ({ startAnimation, checkboxChangedCallback }) => {
 		return () => ctx.revert()
 	}, [startAnimation])
 
-	function handleChange(e) {
-		checkboxChangedCallback(!checked)
+	function handleCheckboxChange(e) {
+		onCheckboxChanged(!checked)
 		setChecked(!checked)
 	}
 
@@ -43,11 +44,9 @@ const SidePanel = ({ startAnimation, checkboxChangedCallback }) => {
 					x = Asin(at + &phi;) <br />
 					y = Bsin(bt)
 				</text>
-				<Checkbox label="Animate &phi;" value={checked} onChange={handleChange} />
-				<div className="fi-interface">
-					//phi-symbol //value//value-name
-					//slider
-				</div>
+				<Checkbox label="Animate &phi;" value={checked} onChange={handleCheckboxChange} />
+				<Interface symbol='&phi;' onChange={onPhiSliderChanged}/>
+				
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 
