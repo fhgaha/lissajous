@@ -21,7 +21,7 @@ const SidePanel = ({ startAnimation, checkboxChangedCallback }) => {
 		return () => ctx.revert()
 	}, [startAnimation])
 
-	function handleChange(e){
+	function handleChange(e) {
 		checkboxChangedCallback(!checked)
 		setChecked(!checked)
 	}
@@ -39,8 +39,15 @@ const SidePanel = ({ startAnimation, checkboxChangedCallback }) => {
 				width={400}
 				onRequestClose={() => setIsPaneOpen(false)}
 			>
+				<text>
+					x = Asin(at + &phi;) <br />
+					y = Bsin(bt)
+				</text>
 				<Checkbox label="Animate &phi;" value={checked} onChange={handleChange} />
-				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
+				<div className="fi-interface">
+					//phi-symbol //value//value-name
+					//slider
+				</div>
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 
