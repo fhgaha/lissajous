@@ -7,7 +7,7 @@ const fps = 60
 const width = 400, height = 400
 let startAnimationFinished = false
 
-const Path = ({ pathIsActive, newManualParamsEvent, ...props }) => {
+const Path = ({ pathIsActive, sidePanelState, ...props }) => {
 	const [params, setParams] = useState({ a: 1, b: 1, phi: 0.0 })
 	const [definition, setDefinition] = useState('')
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
@@ -28,26 +28,32 @@ const Path = ({ pathIsActive, newManualParamsEvent, ...props }) => {
 	}, [pathIsActive])
 
 	useEffect(() => {
-		console.log(newManualParamsEvent)
-		let e = newManualParamsEvent
+		if (sidePanelState == null || !sidePanelState.isPaneOpen) return
 
-		switch (e.target.className) {
-			case 'range-style':
-				const newPhi = e.target.value == '' ? 0 : parseFloat(e.target.value)
-				setParams({...params, phi: newPhi})
-				break;
-		
-			default:
-				break;
+		setParams({ ...params, phi: sidePanelState.phiValue })
+	}, [sidePanelState.phiValue])
+
+	useEffect(() => {
+		if (sidePanelState == null || !sidePanelState.isPaneOpen) return
+
+		if (sidePanelState.smallACheckbox) {
+			setParams({ ...params, a: sidePanelState.smallAValue })
 		}
+	}, [sidePanelState.smallAValue])
 
-		// setParams({ ...params, phi: newManualParamsEvent })
-	}, [newManualParamsEvent])
+	useEffect(() => {
+		if (sidePanelState == null || !sidePanelState.isPaneOpen) return
+
+		if (sidePanelState.smallBCheckbox) {
+			setParams({ ...params, b: sidePanelState.smallBValue })
+		}
+	}, [sidePanelState.smallBValue])
+
 
 	useInterval(() => {
 		if (!startAnimationFinished) return
 
-		if (pathIsActive) {
+		if (pathIsActive && sidePanelState.phiCheckbox) {
 			setParams({ ...params, phi: params.phi + 0.004 })
 		}
 
@@ -59,6 +65,7 @@ const Path = ({ pathIsActive, newManualParamsEvent, ...props }) => {
 	useEffect(() => {
 		if (!startAnimationFinished || !pathIsActive) return
 		if (mousePos.x == null) return
+		if (sidePanelState.smallACheckbox) return
 
 		let newA = mousePos.y / window.innerHeight * 0.1 + 1 - 0.0477
 		setParams({ ...params, a: newA })

@@ -14,7 +14,17 @@ function App() {
   const [pathIsActive, setPathIsActive] = useState(false)
   const [targetIsActive, setTargetIsActive] = useState(false)
   const [showAdjustButton, setShowAdjustButton] = useState(false)
-  const [inputEvent, setInputEvent] = useState(null)
+  // const [inputEvent, setInputEvent] = useState(null)
+
+  const [sidePanelState, setSidePanelState] = useState({
+    isPaneOpen: false
+    , phiCheckbox: true
+    , phiValue: 0
+    , smallACheckbox: false
+    , smallAValue: 1
+    , smallBCheckbox: false
+    , smallBValue: 1
+  })
 
   const app = useRef()
   const tl = useRef()
@@ -48,24 +58,19 @@ function App() {
     setTargetIsActive(false)
   }
 
-  function handleCheckboxChange(e) {
-    setPathIsActive(e)
-  }
-
-  function handleParamsChange(e) {
-    setInputEvent(e)
+  function handleSidePanelStateChange(state) {
+    setSidePanelState(state)
   }
 
   return (
     <div ref={app} className="App">
       {/* <Circle /> */}
       <WatchLissajousText />
-      <Path pathIsActive={pathIsActive} newManualParamsEvent={inputEvent} />
+      <Path pathIsActive={pathIsActive} sidePanelState={sidePanelState} />
       <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter} />
       <SidePanel
         startAnimation={showAdjustButton}
-        onCheckboxChanged={handleCheckboxChange}
-        onParamsChangedManually={handleParamsChange}
+        onStateChanged={handleSidePanelStateChange}
       />
 
       {/* <a href="https://github.com/fhgaha/lissajous" target="_blank"><BsGithub /></a> */}

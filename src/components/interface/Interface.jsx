@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './interface.scss'
 
-const Interface = ({ symbol, unitName, onChange, inputSettings }) => {
+const Interface = ({ id, symbol, unitName, onChange, inputSettings }) => {
 	const [value, setValue] = useState(0)
 
 	function handleChange(e) {
@@ -10,11 +10,11 @@ const Interface = ({ symbol, unitName, onChange, inputSettings }) => {
 	}
 
 	return (
-		<div className="interface">
+		<div className='interface'>
 			<label className='input-group'>
 				<div>{symbol}</div>
 				<div className='units'>
-					<input type='number' className='number-input'
+					<input type='number' className='number-input' id={id}
 						value={value == NaN ? 0 : value}
 						onChange={handleChange}
 						{...inputSettings}

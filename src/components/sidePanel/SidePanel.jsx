@@ -8,9 +8,16 @@ import ReactSlidingPane from 'react-sliding-pane';
 import Checkbox from '../checkbox/Checkbox'
 import Interface from '../interface/Interface'
 
-const SidePanel = ({ startAnimation, onCheckboxChanged, onParamsChangedManually }) => {
-	const [isPaneOpen, setIsPaneOpen] = useState(false);
-	const [checked, setChecked] = useState(true)
+const SidePanel = ({ startAnimation, onStateChanged }) => {
+	const [state, setState] = useState({
+		isPaneOpen: false
+		, phiCheckbox: true
+		, phiValue: 0
+		, smallACheckbox: false
+		, smallAValue: 1
+		, smallBCheckbox: false
+		, smallBValue: 1
+	})
 
 	useLayoutEffect(() => {
 		if (!startAnimation) return
@@ -22,45 +29,95 @@ const SidePanel = ({ startAnimation, onCheckboxChanged, onParamsChangedManually 
 		return () => ctx.revert()
 	}, [startAnimation])
 
-	function handleCheckboxChange(e) {
-		onCheckboxChanged(!checked)
-		setChecked(!checked)
+	function handlePhiCheckboxChange(e) {
+		let newState = { ...state, phiCheckbox: !state.phiCheckbox }
+		setState(newState)
+		onStateChanged(newState)
+	}
+
+	function handlePhiValueChange(e) {
+		let newPhi = e.target.value == '' ? 0 : parseFloat(e.target.value)
+		let newState = { ...state, phiValue: newPhi }
+		setState(newState)
+		onStateChanged(newState)
+	}
+
+	function handleSmallACheckboxChange(e) {
+		let newState = { ...state, smallACheckbox: !state.smallACheckbox }
+		setState(newState)
+		onStateChanged(newState)
+	}
+
+	function handleSmallAValueChange(e) {
+		let newSmallA = e.target.value == '' ? 0 : parseFloat(e.target.value)
+		let newState = { ...state, smallAValue: newSmallA }
+		setState(newState)
+		onStateChanged(newState)
+	}
+
+	function handleSmallBCheckboxChange(e) {
+		let newState = { ...state, smallBCheckbox: !state.smallBCheckbox }
+		setState(newState)
+		onStateChanged(newState)
+	}
+
+	function handleSmallBValueChange(e) {
+		let newSmallB = e.target.value == '' ? 0 : parseFloat(e.target.value)
+		let newState = { ...state, smallBValue: newSmallB }
+		setState(newState)
+		onStateChanged(newState)
 	}
 
 	const phiInputSettings = { min: 0, max: 2, step: 0.01 }
-	const smallAInputSettings = { min: 1, max: 20, step: 1 }
+	const smallABInputSettings = { min: 1, max: 20, step: 1 }
 
 	return (
 		<div className="side-panel">
-			<button onClick={() => setIsPaneOpen(true)}>
+			<button onClick={() => setState({ ...state, isPaneOpen: true })}>
 				<BsGear id='gear' size={25} />
 			</button>
 			<ReactSlidingPane
 				closeIcon={<IoIosClose style={{ width: 70, height: 70 }} />}
 				className="my-slide-pane"
 				overlayClassName="my-slide-pane__overlay"
-				isOpen={isPaneOpen}
+				isOpen={state.isPaneOpen}
 				width={400}
-				onRequestClose={() => setIsPaneOpen(false)}
+				onRequestClose={() => setState({ ...state, isPaneOpen: false })}
 			>
 				<text>
 					x = Asin(at + &phi;) <br />
 					y = Bsin(bt)
 				</text>
-				<Checkbox label="Animate &phi;" value={checked} onChange={handleCheckboxChange} />
+
+				<Checkbox label="Animate &phi;"
+					value={state.phiCheckbox}
+					onChange={handlePhiCheckboxChange} id="cbx-51" />
 				<Interface
+					id='phi'
 					symbol='&phi;'
 					unitName='&pi;, Radians'
-					onChange={onParamsChangedManually}
+					onChange={handlePhiValueChange}
 					inputSettings={phiInputSettings} />
+
+				<Checkbox label="Change a manually"
+					value={state.smallACheckbox}
+					onChange={handleSmallACheckboxChange} id="cbx-52" />
 				<Interface
+					id='a'
 					symbol='a'
 					unitName=''
-					onChange={onParamsChangedManually}
-					inputSettings={smallAInputSettings} />
+					onChange={handleSmallAValueChange}
+					inputSettings={smallABInputSettings} />
 
-				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
-				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
+				<Checkbox label="Change b manually"
+					value={state.smallBCheckbox}
+					onChange={handleSmallBCheckboxChange} id="cbx-53" />
+				<Interface
+					id='b'
+					symbol='b'
+					unitName=''
+					onChange={handleSmallBValueChange}
+					inputSettings={smallABInputSettings} />
 
 			</ReactSlidingPane>
 		</div>
