@@ -8,10 +8,8 @@ const width = 400, height = 400
 let startAnimationFinished = false
 
 const Path = ({ pathIsActive, newPhi, ...props }) => {
-	const [a, setA] = useState(1)
-	const [b, setB] = useState(1)
+	const [params, setParams] = useState({ a: 1, b: 1, phi: 0.0 })
 	const [definition, setDefinition] = useState('')
-	const [phi, setPhi] = useState(0.0)
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
 
 	useEffect(() => {
@@ -30,17 +28,18 @@ const Path = ({ pathIsActive, newPhi, ...props }) => {
 	}, [pathIsActive])
 
 	useEffect(() => {
-		setPhi(parseFloat(newPhi))
+		setParams({...params, phi: newPhi })
 	}, [newPhi])
 
 	useInterval(() => {
 		if (!startAnimationFinished) return
 
 		if (pathIsActive) {
-			setPhi(phi + 0.004);
+			setParams({...params, phi: params.phi + 0.004 })
 		}
 
-		let def = getDCode(height / 2, height / 4, a, b, phi)
+		let def = getDCode(height / 2, height / 4,
+			params.a,params.b, params.phi)
 		setDefinition(def)
 	}, 1000 / fps);
 
@@ -49,7 +48,7 @@ const Path = ({ pathIsActive, newPhi, ...props }) => {
 		if (mousePos.x == null) return
 
 		let newA = mousePos.y / window.innerHeight * 0.1 + 1 - 0.0477
-		setA(newA)
+		setParams({ ...params, a: newA })
 	}, [mousePos])
 
 	return (
@@ -60,9 +59,9 @@ const Path = ({ pathIsActive, newPhi, ...props }) => {
 				viewBox={`${-width / 4} ${-width / 4} ${width} ${width}`}
 				{...props}
 			>
-				<filter id='shadow' colorInterpolationFilters="sRGB" width="300%" height="300%" x="-75%" y="-75%">
+				{/* <filter id='shadow' colorInterpolationFilters="sRGB" width="300%" height="300%" x="-75%" y="-75%">
 					<feDropShadow dx="0" dy="0" stdDeviation="10" floodOpacity="1" floodColor="white" />
-				</filter>
+				</filter> */}
 				<path fill='none' stroke="white" width='1'
 					style={{ filter: 'drop-shadow(0px 0px 0.5px white)' }}
 					// style={{ filter: 'url(#shadow)' }}
