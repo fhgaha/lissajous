@@ -8,7 +8,7 @@ import ReactSlidingPane from 'react-sliding-pane';
 import Checkbox from '../checkbox/Checkbox'
 import Interface from '../interface/Interface'
 
-const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiChanged }) => {
+const SidePanel = ({ startAnimation, onCheckboxChanged, onParamsChangedManually }) => {
 	const [isPaneOpen, setIsPaneOpen] = useState(false);
 	const [checked, setChecked] = useState(true)
 
@@ -27,11 +27,8 @@ const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiChanged }) => {
 		setChecked(!checked)
 	}
 
-	const phiInputSettings = {
-		min: 0
-		, max: 2
-		, step: 0.01
-	}
+	const phiInputSettings = { min: 0, max: 2, step: 0.01 }
+	const smallAInputSettings = { min: 1, max: 20, step: 1 }
 
 	return (
 		<div className="side-panel">
@@ -54,13 +51,13 @@ const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiChanged }) => {
 				<Interface
 					symbol='&phi;'
 					unitName='&pi;, Radians'
-					onChange={onPhiChanged}
+					onChange={onParamsChangedManually}
 					inputSettings={phiInputSettings} />
-				{/* <Interface
+				<Interface
 					symbol='a'
 					unitName=''
-					onChange={onPhiChanged}
-					inputSettings={phiInputSettings} /> */}
+					onChange={onParamsChangedManually}
+					inputSettings={smallAInputSettings} />
 
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>

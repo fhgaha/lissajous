@@ -7,7 +7,7 @@ const fps = 60
 const width = 400, height = 400
 let startAnimationFinished = false
 
-const Path = ({ pathIsActive, newPhi, ...props }) => {
+const Path = ({ pathIsActive, newManualParamsEvent, ...props }) => {
 	const [params, setParams] = useState({ a: 1, b: 1, phi: 0.0 })
 	const [definition, setDefinition] = useState('')
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
@@ -28,18 +28,31 @@ const Path = ({ pathIsActive, newPhi, ...props }) => {
 	}, [pathIsActive])
 
 	useEffect(() => {
-		setParams({...params, phi: newPhi })
-	}, [newPhi])
+		console.log(newManualParamsEvent)
+		let e = newManualParamsEvent
+
+		switch (e.target.className) {
+			case 'range-style':
+				const newPhi = e.target.value == '' ? 0 : parseFloat(e.target.value)
+				setParams({...params, phi: newPhi})
+				break;
+		
+			default:
+				break;
+		}
+
+		// setParams({ ...params, phi: newManualParamsEvent })
+	}, [newManualParamsEvent])
 
 	useInterval(() => {
 		if (!startAnimationFinished) return
 
 		if (pathIsActive) {
-			setParams({...params, phi: params.phi + 0.004 })
+			setParams({ ...params, phi: params.phi + 0.004 })
 		}
 
 		let def = getDCode(height / 2, height / 4,
-			params.a,params.b, params.phi)
+			params.a, params.b, params.phi)
 		setDefinition(def)
 	}, 1000 / fps);
 

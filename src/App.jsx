@@ -14,7 +14,7 @@ function App() {
   const [pathIsActive, setPathIsActive] = useState(false)
   const [targetIsActive, setTargetIsActive] = useState(false)
   const [showAdjustButton, setShowAdjustButton] = useState(false)
-  const [phiValue, setPhiValue] = useState(0)
+  const [inputEvent, setInputEvent] = useState(null)
 
   const app = useRef()
   const tl = useRef()
@@ -52,20 +52,20 @@ function App() {
     setPathIsActive(e)
   }
 
-  function handlePhiChange(e) {
-    setPhiValue(e.target.value == '' ? 0 : parseFloat(e.target.value))
+  function handleParamsChange(e) {
+    setInputEvent(e)
   }
 
   return (
     <div ref={app} className="App">
       {/* <Circle /> */}
       <WatchLissajousText />
-      <Path pathIsActive={pathIsActive} newPhi={phiValue} />
+      <Path pathIsActive={pathIsActive} newManualParamsEvent={inputEvent} />
       <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter} />
       <SidePanel
         startAnimation={showAdjustButton}
         onCheckboxChanged={handleCheckboxChange}
-        onPhiChanged={handlePhiChange}
+        onParamsChangedManually={handleParamsChange}
       />
 
       {/* <a href="https://github.com/fhgaha/lissajous" target="_blank"><BsGithub /></a> */}
