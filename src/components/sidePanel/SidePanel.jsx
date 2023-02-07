@@ -8,7 +8,7 @@ import ReactSlidingPane from 'react-sliding-pane';
 import Checkbox from '../checkbox/Checkbox'
 import Interface from '../interface/Interface'
 
-const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiSliderChanged }) => {
+const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiChanged }) => {
 	const [isPaneOpen, setIsPaneOpen] = useState(false);
 	const [checked, setChecked] = useState(true)
 
@@ -25,6 +25,12 @@ const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiSliderChanged }) =>
 	function handleCheckboxChange(e) {
 		onCheckboxChanged(!checked)
 		setChecked(!checked)
+	}
+
+	const phiInputSettings = {
+		min: 0
+		, max: 2
+		, step: 0.01
 	}
 
 	return (
@@ -45,8 +51,17 @@ const SidePanel = ({ startAnimation, onCheckboxChanged, onPhiSliderChanged }) =>
 					y = Bsin(bt)
 				</text>
 				<Checkbox label="Animate &phi;" value={checked} onChange={handleCheckboxChange} />
-				<Interface symbol='&phi;' onChange={onPhiSliderChanged} unitName='&pi;, Radians'/>
-				
+				<Interface
+					symbol='&phi;'
+					unitName='&pi;, Radians'
+					onChange={onPhiChanged}
+					inputSettings={phiInputSettings} />
+				{/* <Interface
+					symbol='a'
+					unitName=''
+					onChange={onPhiChanged}
+					inputSettings={phiInputSettings} /> */}
+
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 				<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia aliquid ad consequuntur, eum dignissimos accusamus!</div>
 

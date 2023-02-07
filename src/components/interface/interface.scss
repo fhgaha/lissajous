@@ -66,13 +66,8 @@ input[type='range'] {
 .units {
   display: flex;
   gap: 1rem;
-  vertical-align: middle;
   border-collapse: separate;
-}
-
-.units div,input{
-  height: 34px;
-  vertical-align: middle;
+  align-items: baseline;
 }
 
 input.number-input {

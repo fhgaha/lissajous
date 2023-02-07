@@ -7,11 +7,11 @@ const fps = 60
 const width = 400, height = 400
 let startAnimationFinished = false
 
-const Path = ({ pathIsActive, newTheta, ...props }) => {
+const Path = ({ pathIsActive, newPhi, ...props }) => {
 	const [a, setA] = useState(1)
 	const [b, setB] = useState(1)
 	const [definition, setDefinition] = useState('')
-	const [theta, setTheta] = useState(0.0)
+	const [phi, setPhi] = useState(0.0)
 	const [mousePos, setMousePos] = useMousePos({ x: null, y: null })
 
 	useEffect(() => {
@@ -30,17 +30,17 @@ const Path = ({ pathIsActive, newTheta, ...props }) => {
 	}, [pathIsActive])
 
 	useEffect(() => {
-		setTheta(parseFloat(newTheta))
-	}, [newTheta])
+		setPhi(parseFloat(newPhi))
+	}, [newPhi])
 
 	useInterval(() => {
 		if (!startAnimationFinished) return
 
 		if (pathIsActive) {
-			setTheta(theta + 0.004);
+			setPhi(phi + 0.004);
 		}
 
-		let def = getDCode(height / 2, height / 4, a, b, theta)
+		let def = getDCode(height / 2, height / 4, a, b, phi)
 		setDefinition(def)
 	}, 1000 / fps);
 
