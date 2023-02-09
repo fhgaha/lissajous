@@ -1,19 +1,35 @@
 $primary: #e0e0e0;
 
+.interface {
+  display: flex;
+  gap: 1rem;
+}
+
+.symbol {
+  align-self: center ;
+}
+
+.range-with-number {
+  width: 100%;
+}
+
 input[type='range'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+
   &:focus {
     outline: none;
   }
+
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
   }
+
   &::-moz-range-thumb {
     border: none;
   }
-} 
+}
 
 .range-style {
   width: 100%;
@@ -21,7 +37,7 @@ input[type='range'] {
   padding: 10px;
   background: $primary;
   border-radius: 10px;
-//   box-shadow: -2px -2px 8px white, 2px 2px 8px rgba(black, 0.5);
+  //   box-shadow: -2px -2px 8px white, 2px 2px 8px rgba(black, 0.5);
 
   @mixin track-style {
     display: flex;
@@ -41,15 +57,19 @@ input[type='range'] {
     border-radius: 50%;
     box-shadow: -1px -1px 2px white, 1px 1px 2px rgba(black, 0.3);
   }
+
   &::-webkit-slider-runnable-track {
     @include track-style;
   }
+
   &::-webkit-slider-thumb {
     @include thumb-style;
   }
+
   &::-moz-range-track {
     @include track-style;
   }
+
   &::-moz-range-thumb {
     @include thumb-style;
   }
@@ -64,7 +84,7 @@ input.number-input {
   font-family: 'Poppins', sans-serif;
   border-radius: 0.3rem;
   position: relative;
-} 
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
