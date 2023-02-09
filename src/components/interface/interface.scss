@@ -55,30 +55,16 @@ input[type='range'] {
   }
 }
 
-.input-group {
-  display: flex;
-  justify-content: space-between;
-  vertical-align: middle;
-  gap: 1rem;
-  height: 2rem;
-}
-
-.units {
-  display: flex;
-  gap: 1rem;
-  border-collapse: separate;
-  align-items: baseline;
-}
-
 input.number-input {
   vertical-align: middle;
-  text-align: right;
-  background-color: var(--color-white);
+  text-align: center;
+  background-color: var(--color-primary);
   height: 20px;
-  width: 60px;
+  width: 40px;
   font-family: 'Poppins', sans-serif;
-  padding: 0 0.4rem;
-}
+  border-radius: 0.3rem;
+  position: relative;
+} 
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
