@@ -29,41 +29,15 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 		return () => ctx.revert()
 	}, [startAnimation])
 
-	function handlePhiCheckboxChange(e) {
-		let newState = { ...state, phiCheckbox: !state.phiCheckbox }
+	function handleCheckboxChange(e, propertyName) {
+		let newState = { ...state, [propertyName]: !state[propertyName] }
 		setState(newState)
 		onStateChanged(newState)
 	}
 
-	function handlePhiValueChange(e) {
-		let newPhi = e.target.value == '' ? 0 : parseFloat(e.target.value)
-		let newState = { ...state, phiValue: newPhi }
-		setState(newState)
-		onStateChanged(newState)
-	}
-
-	function handleSmallACheckboxChange(e) {
-		let newState = { ...state, smallACheckbox: !state.smallACheckbox }
-		setState(newState)
-		onStateChanged(newState)
-	}
-
-	function handleSmallAValueChange(e) {
-		let newSmallA = e.target.value == '' ? 0 : parseFloat(e.target.value)
-		let newState = { ...state, smallAValue: newSmallA }
-		setState(newState)
-		onStateChanged(newState)
-	}
-
-	function handleSmallBCheckboxChange(e) {
-		let newState = { ...state, smallBCheckbox: !state.smallBCheckbox }
-		setState(newState)
-		onStateChanged(newState)
-	}
-
-	function handleSmallBValueChange(e) {
-		let newSmallB = e.target.value == '' ? 0 : parseFloat(e.target.value)
-		let newState = { ...state, smallBValue: newSmallB }
+	function handleValueChange(e, propertyName) {
+		let newValue = e.target.value == '' ? 0 : parseFloat(e.target.value)
+		let newState = { ...state, [propertyName]: newValue }
 		setState(newState)
 		onStateChanged(newState)
 	}
@@ -91,32 +65,32 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 
 				<Checkbox label="Animate &phi;"
 					value={state.phiCheckbox}
-					onChange={handlePhiCheckboxChange} id="cbx-51" />
+					onChange={(e) => handleCheckboxChange(e, 'phiCheckbox')} id="cbx-51" />
 				<Interface
 					id='phi'
 					symbol='&phi;'
 					unitName='&pi;, Radians'
-					onChange={handlePhiValueChange}
+					onChange={(e) => handleValueChange(e, 'phiValue')}
 					inputSettings={phiInputSettings} />
 
 				<Checkbox label="Change a manually"
 					value={state.smallACheckbox}
-					onChange={handleSmallACheckboxChange} id="cbx-52" />
+					onChange={(e) => handleCheckboxChange(e, 'smallACheckbox')} id="cbx-52" />
 				<Interface
 					id='a'
 					symbol='a'
 					unitName=''
-					onChange={handleSmallAValueChange}
+					onChange={(e) => handleValueChange(e, 'smallAValue')}
 					inputSettings={smallABInputSettings} />
 
 				<Checkbox label="Change b manually"
 					value={state.smallBCheckbox}
-					onChange={handleSmallBCheckboxChange} id="cbx-53" />
+					onChange={(e) => handleCheckboxChange(e, 'smallBCheckbox')} id="cbx-53" />
 				<Interface
 					id='b'
 					symbol='b'
 					unitName=''
-					onChange={handleSmallBValueChange}
+					onChange={(e) => handleValueChange(e, 'smallBValue')}
 					inputSettings={smallABInputSettings} />
 
 			</ReactSlidingPane>
