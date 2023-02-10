@@ -75,7 +75,7 @@ input[type='range'] {
   }
 }
 
-input.number-input {
+.number-input {
   vertical-align: middle;
   text-align: center;
   background-color: var(--color-primary);
@@ -84,6 +84,7 @@ input.number-input {
   font-family: 'Poppins', sans-serif;
   border-radius: 0.3rem;
   position: relative;
+  color: black;
 }
 
 input::-webkit-outer-spin-button,
@@ -93,4 +94,18 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.number-input:after{
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top: 10px solid var(--color-primary);
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	margin-top: -1px;
 }

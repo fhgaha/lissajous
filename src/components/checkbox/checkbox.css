@@ -45,21 +45,6 @@
  	opacity: 1;
  }
 
- .checkbox-wrapper-51 .toggle span svg {
- 	margin: 7px;
- 	fill: none;
- }
-
- .checkbox-wrapper-51 .toggle span svg path {
- 	stroke: #c8ccd4;
- 	stroke-width: 2;
- 	stroke-linecap: round;
- 	stroke-linejoin: round;
- 	stroke-dasharray: 24;
- 	stroke-dashoffset: 0;
- 	transition: all 0.5s linear;
- }
-
  .checkbox-wrapper-51 input[type="checkbox"]:checked+.toggle:before {
  	background: #52d66b;
  }

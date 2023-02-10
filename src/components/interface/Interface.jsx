@@ -14,7 +14,7 @@ const Interface = ({ id, symbol, onChange, inputSettings }) => {
 		let newPos = (newValue - inputSettings.min) * 100 / (inputSettings.max - inputSettings.min)
 		let newOffset = -numberInputWidth * newPos / 100
 		setNumberPosition({ value: newPos, offset: newOffset })
-		
+
 		onChange(e)
 	}
 
@@ -22,12 +22,13 @@ const Interface = ({ id, symbol, onChange, inputSettings }) => {
 		<div className='interface'>
 			<div className='symbol'>{symbol}</div>
 			<div className="range-with-number">
-				<input type='number' className='number-input' id={id}
+				<button type='number' className='number-input' id={id}
+					disabled={true}
 					value={value}
 					onChange={handleChange}
 					style={{ left: `calc(${numberPosition.value}% + (${numberPosition.offset}px))` }}
 					{...inputSettings}
-				></input>
+				>{value}</button>
 				<input type="range" className="range-style"
 					value={value}
 					onChange={handleChange}
