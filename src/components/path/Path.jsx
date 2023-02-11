@@ -16,11 +16,11 @@ const Path = ({ pathIsActive, sidePanelState, ...props }) => {
 		if (startAnimationFinished || !pathIsActive) return
 
 		const draw = async () => {
-			await waitFor(800)
+			await for_ms(800)
 
 			for (let i = 0; i < 100; i++) {
 				setDefinition(`M ${100 - i} ${100 - i} L ${100 + i} ${100 + i}`)
-				await waitFor(10)
+				await for_ms(10)
 			}
 			startAnimationFinished = true
 		}
@@ -102,7 +102,7 @@ const Path = ({ pathIsActive, sidePanelState, ...props }) => {
 
 export default Path
 
-async function waitFor(ms) {
+async function for_ms(ms) {
 	await new Promise(resolve => setTimeout(resolve, ms))
 }
 

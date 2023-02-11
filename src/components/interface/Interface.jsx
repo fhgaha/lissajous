@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './interface.scss'
 
 const numberInputWidth = 40
 
-const Interface = ({ id, symbol, defaultValue, onChange, inputSettings }) => {
-	const [value, setValue] = useState(defaultValue)
+const Interface = ({ id, symbol, defaultValue, value, onChange, inputSettings }) => {
+	// const [value, setValue] = useState(defaultValue)
 	const [numberPosition, setNumberPosition] = useState({ value: 0, offset: 0 })
 
 	function handleChange(e) {
 		let newValue = e.target.value == '' ? 0 : parseFloat(e.target.value)
-		setValue(newValue)
+		// setValue(newValue)
 
 		let newPos = (newValue - inputSettings.min) * 100 / (inputSettings.max - inputSettings.min)
 		let newOffset = -numberInputWidth * newPos / 100
