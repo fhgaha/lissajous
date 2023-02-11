@@ -18,6 +18,11 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 		, smallBCheckbox: false
 		, smallBValue: 1
 	})
+	const [numberPosition, setNumberPosition] = useState({
+		phiValue: { value: 0, offset: 0 }
+		,smallAValue: { value: 0, offset: 0 }
+		,smallBValue: { value: 0, offset: 0 }
+	})
 
 	useLayoutEffect(() => {
 		if (!startAnimation) return
@@ -30,13 +35,13 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 	}, [startAnimation])
 
 	function handleAfterOpen(e) {
-		let newState = {...state, isPaneOpen: true}
+		let newState = { ...state, isPaneOpen: true }
 		setState(newState)
 		onStateChanged(newState)
 	}
 
 	function handleAfterClose(e) {
-		let newState = {...state, isPaneOpen: false}
+		let newState = { ...state, isPaneOpen: false }
 		setState(newState)
 		onStateChanged(newState)
 	}
@@ -47,10 +52,11 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 		onStateChanged(newState)
 	}
 
-	function handleValueChange(e, propertyName) {
+	function handleValueChange(e, propertyName, pos) {
 		let newValue = e.target.value == '' ? 0 : parseFloat(e.target.value)
 		let newState = { ...state, [propertyName]: newValue }
 		setState(newState)
+		setNumberPosition({...numberPosition, [propertyName]: pos})
 		onStateChanged(newState)
 	}
 
@@ -83,9 +89,9 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 				<Interface
 					id='phi'
 					symbol='&phi;'
-					defaultValue={0}
 					value={state.phiValue}
-					onChange={(e) => handleValueChange(e, 'phiValue')}
+					numberPosition={numberPosition.phiValue}
+					onChange={(e, pos) => handleValueChange(e, 'phiValue', pos)}
 					inputSettings={phiInputSettings} />
 
 				<Checkbox label="Change a manually"
@@ -94,9 +100,9 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 				<Interface
 					id='a'
 					symbol='a'
-					defaultValue={1}
 					value={state.smallAValue}
-					onChange={(e) => handleValueChange(e, 'smallAValue')}
+					numberPosition={numberPosition.smallAValue}
+					onChange={(e, pos) => handleValueChange(e, 'smallAValue', pos)}
 					inputSettings={smallABInputSettings} />
 
 				<Checkbox label="Change b manually"
@@ -105,9 +111,9 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 				<Interface
 					id='b'
 					symbol='b'
-					defaultValue={1}
 					value={state.smallBValue}
-					onChange={(e) => handleValueChange(e, 'smallBValue')}
+					numberPosition={numberPosition.smallBValue}
+					onChange={(e, pos) => handleValueChange(e, 'smallBValue', pos)}
 					inputSettings={smallABInputSettings} />
 
 			</ReactSlidingPane>

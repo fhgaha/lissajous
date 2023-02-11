@@ -3,19 +3,13 @@ import './interface.scss'
 
 const numberInputWidth = 40
 
-const Interface = ({ id, symbol, defaultValue, value, onChange, inputSettings }) => {
-	// const [value, setValue] = useState(defaultValue)
-	const [numberPosition, setNumberPosition] = useState({ value: 0, offset: 0 })
+const Interface = ({ id, symbol, value, numberPosition, onChange, inputSettings }) => {
 
 	function handleChange(e) {
 		let newValue = e.target.value == '' ? 0 : parseFloat(e.target.value)
-		// setValue(newValue)
-
 		let newPos = (newValue - inputSettings.min) * 100 / (inputSettings.max - inputSettings.min)
 		let newOffset = -numberInputWidth * newPos / 100
-		setNumberPosition({ value: newPos, offset: newOffset })
-
-		onChange(e)
+		onChange(e, { value: newPos, offset: newOffset })
 	}
 
 	return (
