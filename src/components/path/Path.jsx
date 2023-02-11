@@ -66,6 +66,7 @@ const Path = ({ pathIsActive, sidePanelState, ...props }) => {
 		if (!startAnimationFinished || !pathIsActive) return
 		if (mousePos.x == null) return
 		if (sidePanelState.smallACheckbox) return
+		if (sidePanelState.smallBCheckbox) return
 		if (sidePanelState.isPaneOpen) return
 
 		let newA = mousePos.y / window.innerHeight * 0.1 + 1 - 0.0477
@@ -106,8 +107,9 @@ async function waitFor(ms) {
 }
 
 function getDCode(width, height, a, b, theta) {
-	let result = '';
-	for (let i = 0; i < 100; i += 0.01) {
+	let result = ''
+	let range = (a > 15 || b > 15) ? 25 : 100
+	for (let i = 0; i < range; i += 0.01) {
 		let x = calcX(i, theta, width, a)
 		let y = calcY(i, height, b)
 		result += result == '' ? ` M ${x} ${y}` : ` L ${x} ${y}`
