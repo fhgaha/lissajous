@@ -29,6 +29,18 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 		return () => ctx.revert()
 	}, [startAnimation])
 
+	function handleAfterOpen(e) {
+		let newState = {...state, isPaneOpen: true}
+		setState(newState)
+		onStateChanged(newState)
+	}
+
+	function handleAfterClose(e) {
+		let newState = {...state, isPaneOpen: false}
+		setState(newState)
+		onStateChanged(newState)
+	}
+
 	function handleCheckboxChange(e, propertyName) {
 		let newState = { ...state, [propertyName]: !state[propertyName] }
 		setState(newState)
@@ -55,6 +67,8 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 				className="my-slide-pane"
 				overlayClassName="my-slide-pane__overlay"
 				isOpen={state.isPaneOpen}
+				onAfterOpen={handleAfterOpen}
+				onAfterClose={handleAfterClose}
 				width={400}
 				onRequestClose={() => setState({ ...state, isPaneOpen: false })}
 			>

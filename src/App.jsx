@@ -17,7 +17,7 @@ function App() {
   // const [inputEvent, setInputEvent] = useState(null)
 
   const [sidePanelState, setSidePanelState] = useState({
-    isPaneOpen: false
+    isPaneOpen: null
     , phiCheckbox: true
     , phiValue: 0
     , smallACheckbox: false

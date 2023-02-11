@@ -66,6 +66,7 @@ const Path = ({ pathIsActive, sidePanelState, ...props }) => {
 		if (!startAnimationFinished || !pathIsActive) return
 		if (mousePos.x == null) return
 		if (sidePanelState.smallACheckbox) return
+		if (sidePanelState.isPaneOpen) return
 
 		let newA = mousePos.y / window.innerHeight * 0.1 + 1 - 0.0477
 		setParams({ ...params, a: newA })
