@@ -69,7 +69,7 @@ const Path = ({ pathIsActive, sidePanelState, ...props }) => {
 		if (sidePanelState.isPaneOpen) return
 
 		let newA = mousePos.y / window.innerHeight * 0.1 + 1 - 0.0477
-		setParams({ ...params, a: newA })
+		setParams({ ...params, a: newA, b: 1 })
 	}, [mousePos])
 
 	return (

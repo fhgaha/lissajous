@@ -83,6 +83,7 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 				<Interface
 					id='phi'
 					symbol='&phi;'
+					defaultValue={0}
 					onChange={(e) => handleValueChange(e, 'phiValue')}
 					inputSettings={phiInputSettings} />
 
@@ -92,6 +93,7 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 				<Interface
 					id='a'
 					symbol='a'
+					defaultValue={1}
 					onChange={(e) => handleValueChange(e, 'smallAValue')}
 					inputSettings={smallABInputSettings} />
 
@@ -101,6 +103,7 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 				<Interface
 					id='b'
 					symbol='b'
+					defaultValue={1}
 					onChange={(e) => handleValueChange(e, 'smallBValue')}
 					inputSettings={smallABInputSettings} />
 

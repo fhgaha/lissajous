@@ -3,8 +3,8 @@ import './interface.scss'
 
 const numberInputWidth = 40
 
-const Interface = ({ id, symbol, onChange, inputSettings }) => {
-	const [value, setValue] = useState(0)
+const Interface = ({ id, symbol, defaultValue, onChange, inputSettings }) => {
+	const [value, setValue] = useState(defaultValue)
 	const [numberPosition, setNumberPosition] = useState({ value: 0, offset: 0 })
 
 	function handleChange(e) {
