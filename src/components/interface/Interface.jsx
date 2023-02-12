@@ -3,8 +3,7 @@ import st from './interface.module.scss'
 
 const numberInputWidth = 40
 
-const Interface = ({ id, symbol, value, numberPosition, onChange, inputSettings }) => {
-
+const Interface = ({ id, isDisabled = false, symbol, value, numberPosition, onChange, inputSettings }) => {
 	function handleChange(e) {
 		let newValue = e.target.value == '' ? 0 : parseFloat(e.target.value)
 		let newPos = (newValue - inputSettings.min) * 100 / (inputSettings.max - inputSettings.min)
@@ -24,6 +23,7 @@ const Interface = ({ id, symbol, value, numberPosition, onChange, inputSettings 
 					{...inputSettings}
 				>{value}</button>
 				<input type="range" className={st["range-style"]}
+					disabled={isDisabled}
 					value={value}
 					onChange={handleChange}
 					{...inputSettings}

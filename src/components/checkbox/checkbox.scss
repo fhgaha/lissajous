@@ -1,7 +1,8 @@
  .checkbox-wrapper-51 {
+	align-items: center;
  	display: flex;
  	gap: 1rem;
-	--gradient-color: rgba(0, 0, 0, 0.219);
+ 	--gradient-color: rgba(0, 0, 0, 0.219);
  }
 
  .checkbox-wrapper-51 input[type="checkbox"] {
@@ -20,17 +21,17 @@
  }
 
  .checkbox-wrapper-51 .toggle:before {
-	content: "";
+ 	content: "";
  	position: relative;
  	top: 2px;
-	left: 1px;
+ 	left: 1px;
  	width: 38px;
  	height: 16px;
-	display: block;
+ 	display: block;
  	background-image: linear-gradient(0, rgba(white, 0.8), var(--gradient-color));
  	background-color: #c8ccd4;
  	border-radius: 12px;
-	transition: background 0.2s ease;
+ 	transition: background 0.2s ease;
  }
 
  .checkbox-wrapper-51 .toggle span {
@@ -40,27 +41,18 @@
  	width: 20px;
  	height: 20px;
  	background-color: #e0e0e0;
- 	background-image: linear-gradient(-45deg, rgba(white, 0.8), rgba(0, 0, 0, 0.121));
+ 	background-image: linear-gradient(-45deg, rgba(white, 0.8), rgba(0, 0, 0, 0.062));
  	border-radius: 50%;
- 	box-shadow: -1px -1px 2px white, 1px 1px 2px rgba(black, 0.3);
+ 	box-shadow: 1px 1px 2px rgba(black, 0.3);
  	opacity: 1;
  	transition: all 0.2s ease;
  }
 
  .checkbox-wrapper-51 input[type="checkbox"]:checked+.toggle:before {
- 	background: var(--color-primary);
-	background-image: linear-gradient(0, rgba(var(--color-primary-variant), 0.8), var(--gradient-color));
+ 	background-color: var(--color-primary);
+ 	background-image: linear-gradient(0, rgba(var(--color-primary-variant), 0.8), var(--gradient-color));
  }
 
  .checkbox-wrapper-51 input[type="checkbox"]:checked+.toggle span {
  	transform: translateX(22px);
  }
-
- //    position: relative;
- //     top: -50%;
- //     width: 20px;
- //     height: 20px;
- //     background-color: $primary;
- //     background-image: linear-gradient(-45deg, rgba(white, 0.8), transparent);
- //     border-radius: 50%;
- //     box-shadow: -1px -1px 2px white, 1px 1px 2px rgba(black, 0.3);

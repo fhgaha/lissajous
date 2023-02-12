@@ -83,38 +83,46 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 					y = Bsin(bt)
 				</text>
 
-				<Checkbox label="Animate &phi;"
-					value={state.phiCheckbox}
-					onChange={(e) => handleCheckboxChange(e, 'phiCheckbox')} id="cbx-51" />
-				<Interface
-					id='phi'
-					symbol='&phi;'
-					value={state.phiValue}
-					numberPosition={numberPosition.phiValue}
-					onChange={(e, pos) => handleValueChange(e, 'phiValue', pos)}
-					inputSettings={phiInputSettings} />
+				<div>
+					<Checkbox label="Animate &phi;"
+						value={state.phiCheckbox}
+						onChange={(e) => handleCheckboxChange(e, 'phiCheckbox')} id="cbx-51" />
+					<Interface
+						id='phi'
+						symbol='&phi;'
+						value={state.phiValue}
+						numberPosition={numberPosition.phiValue}
+						onChange={(e, pos) => handleValueChange(e, 'phiValue', pos)}
+						inputSettings={phiInputSettings} />
+				</div>
 
-				<Checkbox label="Change a manually"
-					value={state.smallACheckbox}
-					onChange={(e) => handleCheckboxChange(e, 'smallACheckbox')} id="cbx-52" />
-				<Interface
-					id='a'
-					symbol='a'
-					value={state.smallAValue}
-					numberPosition={numberPosition.smallAValue}
-					onChange={(e, pos) => handleValueChange(e, 'smallAValue', pos)}
-					inputSettings={smallABInputSettings} />
+				<div>
+					<Checkbox label="Change a manually"
+						value={state.smallACheckbox}
+						onChange={(e) => handleCheckboxChange(e, 'smallACheckbox')} id="cbx-52" />
+					<Interface
+						id='a'
+						isDisabled={!state.smallACheckbox}
+						symbol='a'
+						value={state.smallAValue}
+						numberPosition={numberPosition.smallAValue}
+						onChange={(e, pos) => handleValueChange(e, 'smallAValue', pos)}
+						inputSettings={smallABInputSettings} />
+				</div>
 
-				<Checkbox label="Change b manually"
-					value={state.smallBCheckbox}
-					onChange={(e) => handleCheckboxChange(e, 'smallBCheckbox')} id="cbx-53" />
-				<Interface
-					id='b'
-					symbol='b'
-					value={state.smallBValue}
-					numberPosition={numberPosition.smallBValue}
-					onChange={(e, pos) => handleValueChange(e, 'smallBValue', pos)}
-					inputSettings={smallABInputSettings} />
+				<div>
+					<Checkbox label="Change b manually"
+						value={state.smallBCheckbox}
+						onChange={(e) => handleCheckboxChange(e, 'smallBCheckbox')} id="cbx-53" />
+					<Interface
+						id='b'
+						isDisabled={!state.smallBCheckbox}
+						symbol='b'
+						value={state.smallBValue}
+						numberPosition={numberPosition.smallBValue}
+						onChange={(e, pos) => handleValueChange(e, 'smallBValue', pos)}
+						inputSettings={smallABInputSettings} />
+				</div>
 
 			</ReactSlidingPane>
 		</div>
