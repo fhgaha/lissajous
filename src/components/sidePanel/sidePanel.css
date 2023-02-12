@@ -39,7 +39,6 @@
 	color: var(--color-light);
 	background-color: transparent;
 	transition: var(--transition);
-	rotate: 360;
 	cursor: pointer;
 }
 

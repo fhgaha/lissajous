@@ -65,7 +65,7 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 
 	return (
 		<div className="side-panel">
-			<button onClick={() => setState({ ...state, isPaneOpen: true })}>
+			<button id='gear-button' onClick={() => setState({ ...state, isPaneOpen: true })}>
 				<BsGear id='gear' size={25} />
 			</button>
 			<ReactSlidingPane

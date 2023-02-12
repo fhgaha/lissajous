@@ -14,7 +14,6 @@ function App() {
   const [pathIsActive, setPathIsActive] = useState(false)
   const [targetIsActive, setTargetIsActive] = useState(false)
   const [showAdjustButton, setShowAdjustButton] = useState(false)
-  // const [inputEvent, setInputEvent] = useState(null)
 
   const [sidePanelState, setSidePanelState] = useState({
     isPaneOpen: null
