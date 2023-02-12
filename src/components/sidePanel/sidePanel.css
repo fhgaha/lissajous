@@ -59,3 +59,15 @@
 	background-color: transparent;
 	border-bottom: none;
 }
+
+.github-link {
+	display: block;
+	width: 20px;
+	height: 20px;
+	color: var(--color-bg-variant);
+}
+
+.github-link>svg {
+	position: relative;
+	align-self: normal;
+}

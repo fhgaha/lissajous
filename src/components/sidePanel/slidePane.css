@@ -81,22 +81,26 @@
 }
 
 .slide-pane__title-wrapper {
+  height: 100%;
   display: flex;
   flex: 1;
-  flex-direction: column;
+  flex-direction: row;
   margin-left: 32px;
   min-width: 0;
 }
 
 .slide-pane .slide-pane__title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
   font-size: 18px;
   font-weight: normal;
-  max-width: 80%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
-  padding: 0;
+  padding: 1rem;
 }
 
 .slide-pane__close {

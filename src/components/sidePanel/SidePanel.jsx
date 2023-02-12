@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react'
 import './slidePane.css'
 import './sidePanel.css'
-import { BsGear } from 'react-icons/bs'
+import { BsGear, BsGithub } from 'react-icons/bs'
 import { IoIosClose } from 'react-icons/io'
 import gsap from "gsap";
 import ReactSlidingPane from 'react-sliding-pane';
@@ -27,8 +27,10 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 	useLayoutEffect(() => {
 		if (!startAnimation) return
 
+		const buttonApearingDelay = 5
+
 		const ctx = gsap.context(() => {
-			gsap.to('.side-panel', { transform: 'translateX(0)', duration: 1, delay: 0.5 })
+			gsap.to('.side-panel', { transform: 'translateX(0)', duration: 1, delay: buttonApearingDelay })
 		})
 
 		return () => ctx.revert()
@@ -72,6 +74,11 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 				closeIcon={<IoIosClose style={{ width: 70, height: 70 }} />}
 				className="my-slide-pane"
 				overlayClassName="my-slide-pane__overlay"
+				title={
+					<a className='github-link' href="https://github.com/fhgaha/lissajous" target="_blank">
+						<BsGithub />
+					</a>
+				}
 				isOpen={state.isPaneOpen}
 				onAfterOpen={handleAfterOpen}
 				onAfterClose={handleAfterClose}

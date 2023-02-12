@@ -1,14 +1,10 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import "./App.css";
-import Circle from "./components/circle/Circle";
 import Path from "./components/path/Path";
 import WatchLissajousText from "./components/watchLissajousText/WatchLissajousText";
-import { useInterval } from "./hooks/useInterval";
 import gsap from "gsap";
 import Target from "./components/target/Target";
-import { BsGear, BsGithub } from "react-icons/bs";
 import SidePanel from "./components/sidePanel/SidePanel";
-import Checkbox from "./components/checkbox/Checkbox";
 
 function App() {
   const [pathIsActive, setPathIsActive] = useState(false)
@@ -27,13 +23,13 @@ function App() {
 
   const app = useRef()
   const tl = useRef()
-  const wltDuration = 0.1 //3
+  const textApearingDurstion = 3
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       tl.current = gsap.timeline({ onComplete: () => { setTargetIsActive(true) } })
         .to('#watch-lissajous-text',
-          { scale: 1, opacity: 1, duration: wltDuration, ease: 'cubic-bezier(0.5, 1, 0.89, 1)', delay: 0.8 })
+          { scale: 1, opacity: 1, duration: textApearingDurstion, ease: 'cubic-bezier(0.5, 1, 0.89, 1)', delay: 0.8 })
         .to('#watch-lissajous-text', { opacity: 0, duration: 1 })
         .to('.target-in-center', { opacity: 1, duration: 0.6 })
     }, app)
@@ -63,7 +59,6 @@ function App() {
 
   return (
     <div ref={app} className="App">
-      {/* <Circle /> */}
       <WatchLissajousText />
       <Path pathIsActive={pathIsActive} sidePanelState={sidePanelState} />
       <Target targetIsActive={targetIsActive.toString()} onMouseEnter={onMouseEnter} />
@@ -71,9 +66,6 @@ function App() {
         startAnimation={showAdjustButton}
         onStateChanged={handleSidePanelStateChange}
       />
-
-      {/* <a href="https://github.com/fhgaha/lissajous" target="_blank"><BsGithub /></a> */}
-      {/* <Checkbox/> */}
     </div>
   );
 }
