@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './interface.scss'
+import st from './interface.module.scss'
 
 const numberInputWidth = 40
 
@@ -13,17 +13,17 @@ const Interface = ({ id, symbol, value, numberPosition, onChange, inputSettings 
 	}
 
 	return (
-		<div className='interface'>
-			<div className='symbol'>{symbol}</div>
-			<div className="range-with-number">
-				<button type='number' className='number-input' id={id}
+		<div className={st.interface}>
+			<div className={st.symbol}>{symbol}</div>
+			<div className={st["range-with-number"]}>
+				<button type='number' className={st["number-input"]} id={id}
 					disabled={true}
 					value={value}
 					onChange={handleChange}
 					style={{ left: `calc(${numberPosition.value}% + (${numberPosition.offset}px))` }}
 					{...inputSettings}
 				>{value}</button>
-				<input type="range" className="range-style"
+				<input type="range" className={st["range-style"]}
 					value={value}
 					onChange={handleChange}
 					{...inputSettings}

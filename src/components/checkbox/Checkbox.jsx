@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './checkbox.css'
+import './checkbox.scss'
 
 const Checkbox = ({ label, value, onChange, id }) => {
 	return (

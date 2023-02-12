@@ -20,8 +20,8 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 	})
 	const [numberPosition, setNumberPosition] = useState({
 		phiValue: { value: 0, offset: 0 }
-		,smallAValue: { value: 0, offset: 0 }
-		,smallBValue: { value: 0, offset: 0 }
+		, smallAValue: { value: 0, offset: 0 }
+		, smallBValue: { value: 0, offset: 0 }
 	})
 
 	useLayoutEffect(() => {
@@ -56,7 +56,7 @@ const SidePanel = ({ startAnimation, onStateChanged }) => {
 		let newValue = e.target.value == '' ? 0 : parseFloat(e.target.value)
 		let newState = { ...state, [propertyName]: newValue }
 		setState(newState)
-		setNumberPosition({...numberPosition, [propertyName]: pos})
+		setNumberPosition({ ...numberPosition, [propertyName]: pos })
 		onStateChanged(newState)
 	}
 

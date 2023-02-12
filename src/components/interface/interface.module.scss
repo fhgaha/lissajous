@@ -7,14 +7,33 @@ $button-bg: var(--color-primary);
 }
 
 .symbol {
-  align-self: center ;
+  align-self: center;
 }
 
 .range-with-number {
   width: 100%;
 }
 
-input[type='range'] {
+// input[type='range'] {
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+//   appearance: none;
+
+//   &:focus {
+//     outline: none;
+//   }
+
+//   &::-webkit-slider-thumb {
+//     -webkit-appearance: none;
+//   }
+
+//   &::-moz-range-thumb {
+//     border: none;
+//   }
+// }
+
+.range-style {
+
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -30,15 +49,12 @@ input[type='range'] {
   &::-moz-range-thumb {
     border: none;
   }
-}
 
-.range-style {
   width: 100%;
   height: 30px;
   padding: 10px;
   background: $primary;
   border-radius: 10px;
-  //   box-shadow: -2px -2px 8px white, 2px 2px 8px rgba(black, 0.5);
 
   @mixin track-style {
     display: flex;
@@ -97,16 +113,16 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.number-input:after{
-	content: "";
-	position: absolute;
-	width: 0;
-	height: 0;
-	border-top: 10px solid $button-bg;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	top: 100%;
-	left: 50%;
-	margin-left: -5px;
-	margin-top: -1px;
+.number-input:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid $button-bg;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -1px;
 }
