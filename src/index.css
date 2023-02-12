@@ -1,6 +1,16 @@
 @import-normalize;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
+@font-face {
+    font-family: 'Jellee';
+    src: local('Jellee'), url('./assets/jellee.roman.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Asikue';
+    src: local('Asikue'), url('./assets/asikue-trial.semi-bold.otf') format('opentype');
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -35,7 +45,7 @@ html {
 }
 
 body {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Asikue','Jellee', 'Poppins', sans-serif;
 	background: var(--color-bg);
 	color: var(--color-white);
 	line-height: 1.7;
